@@ -31,8 +31,8 @@ jobs:
       run: |
         gcloud config set project ${{ secrets.GCP_PROJECT }}
         gcloud builds submit --config cloudbuild.yaml \
-        --substitutions _BASIC_AUTH_USERNAME=$BASIC_AUTH_USERNAME, _BASIC_AUTH_PASSWORD=$BASIC_AUTH_PASSWORD, _IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }}
-        --tag gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }}
+        --substitutions _BASIC_AUTH_USERNAME=$BASIC_AUTH_USERNAME, _BASIC_AUTH_PASSWORD=$BASIC_AUTH_PASSWORD, _IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }}/gcr.io/mlops-test-338117/ml-api@sha256:8a24aa6be73a506f2b0ac57c57a76c89164c187b5d3bc11c0778ad9528c301df
+        --tag gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }}/ml-api@sha256:8a24aa6be73a506f2b0ac57c57a76c89164c187b5d3bc11c0778ad9528c301df
         gcloud config set run/region us-central1
       
     # Deploy the Docker image to the GKE cluster
@@ -40,5 +40,5 @@ jobs:
       uses: 'google-github-actions/deploy-cloudrun@v0'
       with:
         service: ${{ secrets.GCP_APPLICATION }}
-        image: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }}
+        image: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }}/gcr.io/mlops-test-338117/ml-api@sha256:8a24aa6be73a506f2b0ac57c57a76c89164c187b5d3bc11c0778ad9528c301df
         port: '5000'
