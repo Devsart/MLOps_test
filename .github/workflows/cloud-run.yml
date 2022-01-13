@@ -30,8 +30,8 @@ jobs:
     - name: Build & Publish
       run: |
         gcloud config set project ${{ secrets.GCP_PROJECT }}
-        gcloud builds submit --config ../../cloudbuild.yaml \
-        --substitutions _BASIC_AUTH_USERNAME=$BASIC_AUTH_USERNAME, _BASIC_AUTH_PASSWORD=$BASIC_AUTH_PASSWORD, _IMAGE_TAG='gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }}:$GITHUB_SHA'
+        gcloud builds submit --config ./cloudbuild.yaml \
+        --substitutions _BASIC_AUTH_USERNAME=$BASIC_AUTH_USERNAME, _BASIC_AUTH_PASSWORD=$BASIC_AUTH_PASSWORD, _IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }}:$GITHUB_SHA
         --tag gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }}:$GITHUB_SHA
         gcloud config set run/region us-central1
       
