@@ -11,3 +11,5 @@ regex==2021.11.10
 textblob==0.17.1
 tqdm==4.62.3
 Werkzeug==2.0.2
+sklearn
+gunicorn==20.1.0

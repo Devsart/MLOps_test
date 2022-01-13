@@ -11,7 +11,7 @@ from textblob import TextBlob
 import pickle
 
 colunas = ['tamanho','ano','frente']
-modelo = pickle.load(open('models/modelo.sav','rb'))
+modelo = pickle.load(open('./models/modelo.sav','rb'))
 
 app = Flask(__name__)
 app.config['BASIC_AUTH_USERNAME'] = os.environ.get('BASIC_AUTH_USERNAME')
@@ -37,4 +37,6 @@ def cotacao():
     dados_input = [dados[col] for col in colunas]
     preco = modelo.predict([dados_input])
     return f'Preço: R${preco[0]}'
-app.run(debug=True, host='0.0.0.0')
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
