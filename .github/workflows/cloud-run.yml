@@ -30,8 +30,7 @@ jobs:
     # Build the Docker image
     - name: Build & Publish
       run: |
-        gcloud builds submit --config cloudbuild.yaml \
-        --substitutions _BASIC_AUTH_USERNAME=$BASIC_AUTH_USERNAME,_BASIC_AUTH_PASSWORD=$BASIC_AUTH_PASSWORD,_IMAGE_TAG=$IMAGE_TAG:$GITHUB_SHA
+        gcloud builds submit --config cloudbuild.yaml --substitutions _BASIC_AUTH_USERNAME=$BASIC_AUTH_USERNAME,_BASIC_AUTH_PASSWORD=$BASIC_AUTH_PASSWORD,_IMAGE_TAG=$IMAGE_TAG:$GITHUB_SHA
       
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
