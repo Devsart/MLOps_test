@@ -29,7 +29,7 @@ def feel(phrase):
     tb = TextBlob(phrase)
     polarity = tb.sentiment.polarity
     label = 'Vibes Positivas!!' if polarity > 0 else 'Vibe Negativa cara, melhora ai!'
-    return f'A polaridade de sua frase é: {polarity}. ({label}).'
+    return f'A polaridade de sua frase é: {polarity}. ({label})'
 
 @app.route('/cotacao',methods=['POST'])
 @basic_auth.required
