@@ -37,7 +37,7 @@ jobs:
       uses: 'google-github-actions/deploy-cloudrun@v0'
       with:
         service: ${{ secrets.GCP_APPLICATION }}
-        image: $IMAGE_TAG:$GITHUB_SHA
+        image: '$IMAGE_TAG:$GITHUB_SHA'
         port: '5000'
 
     
